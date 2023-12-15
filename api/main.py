@@ -133,9 +133,9 @@ def search():
         archive_results = search_archive_org(book_title=pdf_name)
         results = [{'pdf_name': result['title'], 'pdf_url': result['url']} for result in archive_results]
     elif engine == "anna":
-        initialise = Annas_Archive_Parser(params={"book-name": "Art of war"})
-        final_links = initialise.url_returns()
-        results = [{'pdf_name': f"ID: {links['id']}", 'pdf_url': links['url']} for links in final_links]
+        anna_parser = Annas_Archive_Parser(params={'book-name': pdf_name})
+        anna_results = anna_parser.url_returns()
+        results = [{'pdf_name': result['id'], 'pdf_url': result['url']} for result in anna_results]
     else:
         return redirect("/")
 
