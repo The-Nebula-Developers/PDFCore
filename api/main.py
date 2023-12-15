@@ -24,8 +24,11 @@ class Annas_Archive_Parser():
     def get_top_five_links(self):
         book_name = self.params["book-name"]
         url = f"https://annas-archive.org/search?index=&q={book_name}"
-        response = requests.get(url=url)
-        data = response.text
+        try:
+            response = requests.get(url=url)
+            data = response.text
+        except:
+            return "Error: Unable to fetch Anna's Archive search results."
 
         soup = BeautifulSoup(data, 'html.parser')
 
